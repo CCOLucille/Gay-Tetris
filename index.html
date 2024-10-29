@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tetris Game</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background-color: #2c3e50;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+        
+        .game-container {
+            width: 100%;
+            max-width: 800px;
+            margin: 20px auto;
+            text-align: center;
+        }
+        
+        h1 {
+            color: #ecf0f1;
+            margin-bottom: 20px;
+        }
+        
+        #canvas {
+            border: 2px solid #34495e;
+            background-color: #000;
+            max-width: 100%;
+            height: auto;
+        }
+        
+        .loading {
+            color: #ecf0f1;
+            font-size: 1.2em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="game-container">
+        <h1>Tetris</h1>
+        <canvas id="canvas" oncontextmenu="event.preventDefault()" tabindex="1"></canvas>
+        <div class="loading">Loading...</div>
+    </div>
+    
+    <script>
+        // Load the Python game using Pygbag
+        window.addEventListener("load", function() {
+            const loadingText = document.querySelector(".loading");
+            
+            // Check if the game is loaded
+            function checkGameLoaded() {
+                const canvas = document.getElementById("canvas");
+                if (canvas.style.display !== "none") {
+                    loadingText.style.display = "none";
+                }
+            }
+            
+            // Check loading status every second
+            setInterval(checkGameLoaded, 1000);
+        });
+    </script>
+    
+    <script src="tetris.js" defer></script>
+</body>
+</html>
