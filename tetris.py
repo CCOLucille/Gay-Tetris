@@ -1,5 +1,6 @@
 import pygame
 import pygbag
+import asyncio
 import random
 import math
 from typing import List, Tuple
@@ -400,7 +401,7 @@ class Tetris:
 
         pygame.display.flip()
 
-    def run(self):
+    async def run(self):
         """Main game loop."""
         while not self.game_over:
             self.clock.tick(60)
@@ -442,6 +443,7 @@ class Tetris:
                     self.lock_piece()
 
             self.draw()
+            await asyncio.sleep(0)
 
         # Fabulous game over screen
         font = pygame.font.Font(None, 48)
@@ -469,5 +471,5 @@ class Tetris:
 
 if __name__ == '__main__':
     game = Tetris()
-    game.run()
+    asyncio.run(game.run())
     pygame.quit()
